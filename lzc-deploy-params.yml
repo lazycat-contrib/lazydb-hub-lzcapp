@@ -1,0 +1,66 @@
+params:
+    - id: docker_pull_mirror
+      type: string
+      name: "docker pull mirror"
+      description: "the docker pull mirror"
+      default_value: docker.1ms.run
+
+    - id: enable_mysql
+      type: bool
+      name: "enable mysql support"
+      description: "enable mysql support"
+      default_value: true
+
+    - id: mysql_root_password
+      type: string
+      name: "mysql root password"
+      description: "mysql root password"
+      default_value: ""
+      optional: true
+
+    - id: mysql_database
+      type: string
+      name: "mysql database"
+      description: "mysql database"
+      default_value: ""
+      optional: true
+
+    - id: mysql_user
+      type: string
+      name: "mysql user"
+      description: "mysql user"
+      default_value: ""
+      optional: true
+
+    - id: mysql_password
+      type: string
+      name: "mysql password"
+      description: "mysql password"
+      default_value: ""
+      optional: true
+
+locales:
+    zh:
+        docker_pull_mirror:
+            name: "Docker 镜像拉取地址"
+            description: "Docker 镜像拉取地址"
+
+        enable_mysql:
+            name: "是否启用MySQL支持"
+            description: "是否启用MySQL支持"
+
+        mysql_root_password:
+            name: "MySQL Root用户密码"
+            description: "MySQL Root用户密码"
+
+        mysql_database:
+            name: "MySQL 数据库名称"
+            description: "MySQL 数据库名称"
+
+        mysql_user:
+            name: "MySQL 用户名"
+            description: "MySQL 用户名"
+
+        mysql_password:
+            name: "MySQL 密码"
+            description: "MySQL 密码"
