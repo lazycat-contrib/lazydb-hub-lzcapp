@@ -39,6 +39,80 @@ params:
       default_value: ""
       optional: true
 
+    - id: enable_postgresql
+      type: bool
+      name: "enable postgresql support"
+      description: "enable postgresql support"
+      default_value: false
+
+    - id: postgresql_password
+      type: string
+      name: "postgresql password"
+      description: "postgresql password"
+      default_value: ""
+      optional: true
+
+    - id: postgresql_database
+      type: string
+      name: "postgresql database"
+      description: "postgresql database"
+      default_value: ""
+      optional: true
+
+    - id: postgresql_user
+      type: string
+      name: "postgresql user"
+      description: "postgresql user"
+      default_value: ""
+      optional: true
+
+    - id: enable_mongodb
+      type: bool
+      name: "enable mongodb support"
+      description: "enable mongodb support"
+      default_value: false
+
+    - id: mongodb_root_password
+      type: string
+      name: "mongodb root password"
+      description: "mongodb root password"
+      default_value: ""
+      optional: true
+
+    - id: mongodb_database
+      type: string
+      name: "mongodb database"
+      description: "mongodb database"
+      default_value: ""
+      optional: true
+
+    - id: mongodb_user
+      type: string
+      name: "mongodb user"
+      description: "mongodb user"
+      default_value: ""
+      optional: true
+
+    - id: mongodb_password
+      type: string
+      name: "mongodb password"
+      description: "mongodb password"
+      default_value: ""
+      optional: true
+
+    - id: enable_redis
+      type: bool
+      name: "enable redis support"
+      description: "enable redis support"
+      default_value: false
+
+    - id: redis_password
+      type: string
+      name: "redis password"
+      description: "redis password"
+      default_value: ""
+      optional: true
+
 locales:
     zh:
         docker_pull_mirror:
@@ -46,8 +120,8 @@ locales:
             description: "Docker 镜像拉取地址"
 
         enable_mysql:
-            name: "是否启用MySQL支持"
-            description: "是否启用MySQL支持"
+            name: "是否启用MySQL实例"
+            description: "是否启用MySQL实例"
 
         mysql_root_password:
             name: "MySQL Root用户密码"
@@ -64,3 +138,47 @@ locales:
         mysql_password:
             name: "MySQL 密码"
             description: "MySQL 密码"
+
+        enable_postgresql:
+            name: "是否启用PostgreSQL实例"
+            description: "是否启用PostgreSQL实例"
+
+        postgresql_password:
+            name: "PostgreSQL 密码"
+            description: "PostgreSQL 密码"
+
+        postgresql_database:
+            name: "PostgreSQL 数据库名称"
+            description: "PostgreSQL 数据库名称"
+
+        postgresql_user:
+            name: "PostgreSQL 用户名"
+            description: "PostgreSQL 用户名"
+
+        enable_mongodb:
+            name: "是否启用MongoDB实例"
+            description: "是否启用MongoDB实例"
+
+        mongodb_root_password:
+            name: "MongoDB Root用户密码"
+            description: "MongoDB Root用户密码"
+
+        mongodb_database:
+            name: "MongoDB 数据库名称"
+            description: "MongoDB 数据库名称"
+
+        mongodb_user:
+            name: "MongoDB 用户名"
+            description: "MongoDB 用户名"
+
+        mongodb_password:
+            name: "MongoDB 密码"
+            description: "MongoDB 密码"
+
+        enable_redis:
+            name: "是否启用Redis实例"
+            description: "是否启用Redis实例"
+
+        redis_password:
+            name: "Redis 密码"
+            description: "Redis 密码"

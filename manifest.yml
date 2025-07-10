@@ -1,6 +1,6 @@
 package: lazycat.community.app.lazydb-hub
 name: LazyDB Hub
-version: 0.1.0
+version: 0.1.1
 min_os_version: 1.3.8
 description: Lazycat Database Hub
 homepage: https://github.com/lazycat-contrib/lazydb-hub-lzcapp
@@ -20,6 +20,21 @@ application:
            port: 3306
            service: percona-server
 {{end}}
+{{if .U.enable_postgresql}}
+         - protocol: tcp
+           port: 5432
+           service: postgresql
+{{end}}
+{{if .U.enable_mongodb}}
+         - protocol: tcp
+           port: 27017
+           service: mongodb
+{{end}}
+{{if .U.enable_redis}}
+         - protocol: tcp
+           port: 6379
+           service: redis
+{{end}}
 
 services:
 {{if .U.enable_mysql}}
@@ -34,4 +49,34 @@ services:
             - /lzcapp/var/mysql/data:/var/lib/mysql
             - /lzcapp/var/mysql/logs:/var/log/mysql
             - /lzcapp/var/mysql/backups:/backups
+{{end}}
+{{if .U.enable_postgresql}}
+    postgresql:
+        image: {{.U.docker_pull_mirror}}/postgres:16
+        environment:
+            - POSTGRES_PASSWORD={{.U.postgresql_password}}
+            - POSTGRES_DB={{.U.postgresql_database}}
+            - POSTGRES_USER={{.U.postgresql_user}}
+        binds:
+            - /lzcapp/var/postgresql/data:/var/lib/postgresql/data
+            - /lzcapp/var/postgresql/backups:/backups
+{{end}}
+{{if .U.enable_mongodb}}
+    mongodb:
+        image: {{.U.docker_pull_mirror}}/mongo:7
+        environment:
+            - MONGO_INITDB_ROOT_PASSWORD={{.U.mongodb_root_password}}
+            - MONGO_INITDB_DATABASE={{.U.mongodb_database}}
+            - MONGO_INITDB_ROOT_USERNAME={{.U.mongodb_user}}
+        binds:
+            - /lzcapp/var/mongodb/data:/data/db
+            - /lzcapp/var/mongodb/backups:/backups
+{{end}}
+{{if .U.enable_redis}}
+    redis:
+        image: {{.U.docker_pull_mirror}}/redis:7-alpine
+        command: ["redis-server", "--requirepass", "{{.U.redis_password}}"]
+        binds:
+            - /lzcapp/var/redis/data:/data
+            - /lzcapp/var/redis/backups:/backups
 {{end}}
