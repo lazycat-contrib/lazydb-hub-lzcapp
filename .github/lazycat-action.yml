@@ -1,0 +1,70 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: .lazycat-build/lazydb-hub.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: image
+    image: percona-server
+    bump: patch
+
+build:
+  run_buildscript: false
+
+images:
+  - id: percona-server
+    target: service
+    service: percona-server
+    source: percona/percona-server
+    channel: custom
+    sort: created
+    tag_regex: '^8\.4$'
+    delivery:
+      mode: mirror
+      require_digest_match: true
+  - id: postgresql
+    target: service
+    service: postgresql
+    source: postgres
+    channel: custom
+    sort: created
+    tag_regex: '^16$'
+    delivery:
+      mode: mirror
+      require_digest_match: true
+  - id: mongodb
+    target: service
+    service: mongodb
+    source: mongo
+    channel: custom
+    sort: created
+    tag_regex: '^7$'
+    delivery:
+      mode: mirror
+      require_digest_match: true
+  - id: redis
+    target: service
+    service: redis
+    source: redis
+    channel: custom
+    sort: created
+    tag_regex: '^7-alpine$'
+    delivery:
+      mode: mirror
+      require_digest_match: true
+
+stores:
+  official:
+    enabled: false
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: LazyDB Hub
+    summary: 懒猫数据库中心，可一键启用 MySQL、PostgreSQL、MongoDB 与 Redis 实例。

@@ -1,10 +1,4 @@
 params:
-    - id: docker_pull_mirror
-      type: string
-      name: "docker pull mirror"
-      description: "the docker pull mirror"
-      default_value: docker.1ms.run
-
     - id: enable_mysql
       type: bool
       name: "enable mysql support"
@@ -115,10 +109,6 @@ params:
 
 locales:
     zh:
-        docker_pull_mirror:
-            name: "Docker 镜像拉取地址"
-            description: "Docker 镜像拉取地址"
-
         enable_mysql:
             name: "是否启用MySQL实例"
             description: "是否启用MySQL实例"

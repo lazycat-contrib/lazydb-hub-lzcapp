@@ -1,0 +1,14 @@
+package: lazycat.community.app.lazydb-hub
+version: 0.1.1
+name: LazyDB Hub
+description: Lazycat Database Hub
+min_os_version: "1.5.0"
+homepage: https://github.com/lazycat-contrib/lazydb-hub-lzcapp
+author: czyt
+locales:
+  zh:
+    name: LazyDB Hub
+    description: 懒猫数据库中心，可在应用中直接启用 MySQL、PostgreSQL、MongoDB 和 Redis 实例。
+  en:
+    name: LazyDB Hub
+    description: Lazycat Database Hub — spin up MySQL, PostgreSQL, MongoDB and Redis instances on demand.
