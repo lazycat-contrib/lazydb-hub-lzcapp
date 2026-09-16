@@ -45,8 +45,8 @@ services:
 {{end}}
 {{if .U.enable_postgresql}}
   postgresql:
-    # upstream: postgres:16
-    image: docker.1ms.run/library/postgres:16
+    # upstream: postgres:16.15
+    image: docker.1ms.run/library/postgres:16.15
     environment:
       - POSTGRES_PASSWORD={{.U.postgresql_password}}
       - POSTGRES_DB={{.U.postgresql_database}}
@@ -57,8 +57,8 @@ services:
 {{end}}
 {{if .U.enable_mongodb}}
   mongodb:
-    # upstream: mongo:7
-    image: docker.1ms.run/library/mongo:7
+    # upstream: mongo:7.0.43
+    image: docker.1ms.run/library/mongo:7.0.43
     environment:
       - MONGO_INITDB_ROOT_PASSWORD={{.U.mongodb_root_password}}
       - MONGO_INITDB_DATABASE={{.U.mongodb_database}}
@@ -69,8 +69,8 @@ services:
 {{end}}
 {{if .U.enable_redis}}
   redis:
-    # upstream: redis:7-alpine
-    image: docker.1ms.run/library/redis:7-alpine
+    # upstream: redis:7.4.11-alpine
+    image: docker.1ms.run/library/redis:7.4.11-alpine
     command: ["redis-server", "--requirepass", "{{.U.redis_password}}"]
     binds:
       - /lzcapp/var/redis/data:/data

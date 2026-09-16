@@ -35,9 +35,9 @@ images:
     source: postgres
     channel: custom
     sort: semver
-    tag_regex: '^16$'
-    version_regex: '^(?P<version>16)$'
-    version_template: '{version}.0.0'
+    tag_regex: '^16\.\d+$'
+    version_regex: '^(?P<version>16\.\d+)$'
+    version_template: '{version}.0'
     delivery:
       mode: mirror
       require_digest_match: true
@@ -47,9 +47,9 @@ images:
     source: mongo
     channel: custom
     sort: semver
-    tag_regex: '^7$'
-    version_regex: '^(?P<version>7)$'
-    version_template: '{version}.0.0'
+    tag_regex: '^7\.0\.\d+$'
+    version_regex: '^(?P<version>7\.0\.\d+)$'
+    version_template: '{version}'
     delivery:
       mode: mirror
       require_digest_match: true
@@ -59,9 +59,9 @@ images:
     source: redis
     channel: custom
     sort: semver
-    tag_regex: '^7-alpine$'
-    version_regex: '^(?P<version>7)-alpine$'
-    version_template: '{version}.0.0'
+    tag_regex: '^7\.\d+\.\d+-alpine$'
+    version_regex: '^(?P<version>7\.\d+\.\d+)-alpine$'
+    version_template: '{version}'
     delivery:
       mode: mirror
       require_digest_match: true
