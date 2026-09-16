@@ -1,79 +1,78 @@
 application:
-    subdomain: lazydb-hub
-    background_task: true
-    public_path:
-        - /
-    upstreams:
-        - location: /
-          backend: file:///lzcapp/pkg/content/
-
-    ingress:
+  subdomain: lazydb-hub
+  background_task: true
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: file:///lzcapp/pkg/content/
+  ingress:
 {{if .U.enable_mysql}}
-         - protocol: tcp
-           port: 3306
-           service: percona-server
+    - protocol: tcp
+      port: 3306
+      service: percona-server
 {{end}}
 {{if .U.enable_postgresql}}
-         - protocol: tcp
-           port: 5432
-           service: postgresql
+    - protocol: tcp
+      port: 5432
+      service: postgresql
 {{end}}
 {{if .U.enable_mongodb}}
-         - protocol: tcp
-           port: 27017
-           service: mongodb
+    - protocol: tcp
+      port: 27017
+      service: mongodb
 {{end}}
 {{if .U.enable_redis}}
-         - protocol: tcp
-           port: 6379
-           service: redis
+    - protocol: tcp
+      port: 6379
+      service: redis
 {{end}}
 
 services:
 {{if .U.enable_mysql}}
-    percona-server:
-        # upstream: percona/percona-server:8.4
-        image: docker.1ms.run/percona/percona-server:8.4@sha256:8f6845e655db52d6e480b6c4eddecb0faa8d1f7317dee5ac4018fc08ecb13e2f
-        environment:
-            - MYSQL_ROOT_PASSWORD={{.U.mysql_root_password}}
-            - MYSQL_DATABASE={{.U.mysql_database}}
-            - MYSQL_USER={{.U.mysql_user}}
-            - MYSQL_PASSWORD={{.U.mysql_password}}
-        binds:
-            - /lzcapp/var/mysql/data:/var/lib/mysql
-            - /lzcapp/var/mysql/logs:/var/log/mysql
-            - /lzcapp/var/mysql/backups:/backups
+  percona-server:
+    # upstream: percona/percona-server:8.4
+    image: docker.1ms.run/percona/percona-server:8.4@sha256:8f6845e655db52d6e480b6c4eddecb0faa8d1f7317dee5ac4018fc08ecb13e2f
+    environment:
+      - MYSQL_ROOT_PASSWORD={{.U.mysql_root_password}}
+      - MYSQL_DATABASE={{.U.mysql_database}}
+      - MYSQL_USER={{.U.mysql_user}}
+      - MYSQL_PASSWORD={{.U.mysql_password}}
+    binds:
+      - /lzcapp/var/mysql/data:/var/lib/mysql
+      - /lzcapp/var/mysql/logs:/var/log/mysql
+      - /lzcapp/var/mysql/backups:/backups
 {{end}}
 {{if .U.enable_postgresql}}
-    postgresql:
-        # upstream: postgres:16
-        image: docker.1ms.run/library/postgres:16@sha256:485935f94cc7165afa896978809c37b592dc07f0a37d2c8f645f12412d0212c8
-        environment:
-            - POSTGRES_PASSWORD={{.U.postgresql_password}}
-            - POSTGRES_DB={{.U.postgresql_database}}
-            - POSTGRES_USER={{.U.postgresql_user}}
-        binds:
-            - /lzcapp/var/postgresql/data:/var/lib/postgresql/data
-            - /lzcapp/var/postgresql/backups:/backups
+  postgresql:
+    # upstream: postgres:16
+    image: docker.1ms.run/library/postgres:16
+    environment:
+      - POSTGRES_PASSWORD={{.U.postgresql_password}}
+      - POSTGRES_DB={{.U.postgresql_database}}
+      - POSTGRES_USER={{.U.postgresql_user}}
+    binds:
+      - /lzcapp/var/postgresql/data:/var/lib/postgresql/data
+      - /lzcapp/var/postgresql/backups:/backups
 {{end}}
 {{if .U.enable_mongodb}}
-    mongodb:
-        # upstream: mongo:7
-        image: docker.1ms.run/library/mongo:7@sha256:609d76574151bee8b148caee83cd9fec8b5f695e5a6db9f1e0f9dced0673574e
-        environment:
-            - MONGO_INITDB_ROOT_PASSWORD={{.U.mongodb_root_password}}
-            - MONGO_INITDB_DATABASE={{.U.mongodb_database}}
-            - MONGO_INITDB_ROOT_USERNAME={{.U.mongodb_user}}
-        binds:
-            - /lzcapp/var/mongodb/data:/data/db
-            - /lzcapp/var/mongodb/backups:/backups
+  mongodb:
+    # upstream: mongo:7
+    image: docker.1ms.run/library/mongo:7
+    environment:
+      - MONGO_INITDB_ROOT_PASSWORD={{.U.mongodb_root_password}}
+      - MONGO_INITDB_DATABASE={{.U.mongodb_database}}
+      - MONGO_INITDB_ROOT_USERNAME={{.U.mongodb_user}}
+    binds:
+      - /lzcapp/var/mongodb/data:/data/db
+      - /lzcapp/var/mongodb/backups:/backups
 {{end}}
 {{if .U.enable_redis}}
-    redis:
-        # upstream: redis:7-alpine
-        image: docker.1ms.run/library/redis:7-alpine@sha256:1db42ccef14898aa29bae778452d567534b59c107129cbc1163fb552de184d3c
-        command: ["redis-server", "--requirepass", "{{.U.redis_password}}"]
-        binds:
-            - /lzcapp/var/redis/data:/data
-            - /lzcapp/var/redis/backups:/backups
+  redis:
+    # upstream: redis:7-alpine
+    image: docker.1ms.run/library/redis:7-alpine
+    command: ["redis-server", "--requirepass", "{{.U.redis_password}}"]
+    binds:
+      - /lzcapp/var/redis/data:/data
+      - /lzcapp/var/redis/backups:/backups
 {{end}}
