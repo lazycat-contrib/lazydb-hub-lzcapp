@@ -31,8 +31,8 @@ application:
 services:
 {{if .U.enable_mysql}}
   percona-server:
-    # upstream: percona/percona-server:8.4
-    image: docker.1ms.run/percona/percona-server:8.4@sha256:8f6845e655db52d6e480b6c4eddecb0faa8d1f7317dee5ac4018fc08ecb13e2f
+    # upstream: percona/percona-server:8.4@sha256:20fffeb20bc4801fb527b79c788c4fbadd3241cc3f5a14463dcb706f02090f3e
+    image: docker.1ms.run/percona/percona-server:8.4@sha256:20fffeb20bc4801fb527b79c788c4fbadd3241cc3f5a14463dcb706f02090f3e
     environment:
       - MYSQL_ROOT_PASSWORD={{.U.mysql_root_password}}
       - MYSQL_DATABASE={{.U.mysql_database}}
