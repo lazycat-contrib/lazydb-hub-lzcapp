@@ -1,5 +1,5 @@
 package: lazycat.community.app.lazydb-hub
-version: 0.1.2
+version: 0.1.3
 name: LazyDB Hub
 description: Lazycat Database Hub
 min_os_version: "1.5.0"
