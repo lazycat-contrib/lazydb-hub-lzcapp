@@ -57,8 +57,8 @@ services:
 {{end}}
 {{if .U.enable_mongodb}}
   mongodb:
-    # upstream: mongo:7.0.43
-    image: docker.1ms.run/library/mongo:7.0.43
+    # upstream: mongo:7.0.45
+    image: docker.1ms.run/library/mongo:7.0.45
     environment:
       - MONGO_INITDB_ROOT_PASSWORD={{.U.mongodb_root_password}}
       - MONGO_INITDB_DATABASE={{.U.mongodb_database}}
