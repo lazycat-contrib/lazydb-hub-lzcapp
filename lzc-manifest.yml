@@ -45,8 +45,8 @@ services:
 {{end}}
 {{if .U.enable_postgresql}}
   postgresql:
-    # upstream: postgres:16.15
-    image: docker.1ms.run/library/postgres:16.15
+    # upstream: postgres:16.16
+    image: docker.1ms.run/library/postgres:16.16
     environment:
       - POSTGRES_PASSWORD={{.U.postgresql_password}}
       - POSTGRES_DB={{.U.postgresql_database}}
